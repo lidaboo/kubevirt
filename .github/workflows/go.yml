@@ -5,6 +5,12 @@ on:
     branches: [ release-0.36 ]
   pull_request:
     branches: [ release-0.36 ]
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: true
+        default: 'false'
 
 jobs:
 
