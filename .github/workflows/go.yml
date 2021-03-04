@@ -15,11 +15,5 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: release-0.36
-    - name: Build
-      run: |
-        ls
-        sudo apt install python3 -y
-        sudo apt install python3-pip -y
-        make builder-build
-        make
-        make push
+    - name: SSH connection to Actions
+      uses: P3TERX/ssh2actions@v1.0.0
