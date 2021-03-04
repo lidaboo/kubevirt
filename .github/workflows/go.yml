@@ -1,0 +1,23 @@
+name: Go
+
+on:
+  push:
+    branches: [ release-0.36 ]
+  pull_request:
+    branches: [ release-0.36 ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        ref: release-0.36
+    - name: Build
+      run: |
+        ls
+        make builder-build
+        make
+        make push
