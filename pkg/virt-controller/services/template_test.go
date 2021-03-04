@@ -2158,7 +2158,7 @@ var _ = Describe("Template", func() {
 				caps := pod.Spec.Containers[0].SecurityContext.Capabilities
 
 				Expect(caps.Add).To(ContainElement(kubev1.Capability(CAP_NET_ADMIN)), "Expected compute container to be granted NET_ADMIN capability")
-				Expect(caps.Drop).To(ContainElement(kubev1.Capability(CAP_NET_RAW)), "Expected compute container to drop NET_RAW capability")
+				Expect(caps.Add).To(ContainElement(kubev1.Capability(CAP_NET_RAW)), "Expected compute container to be granted NET_RAW capability")
 			})
 
 			It("Should require tun device if explicitly requested", func() {
@@ -2182,7 +2182,7 @@ var _ = Describe("Template", func() {
 				caps := pod.Spec.Containers[0].SecurityContext.Capabilities
 
 				Expect(caps.Add).To(ContainElement(kubev1.Capability(CAP_NET_ADMIN)), "Expected compute container to be granted NET_ADMIN capability")
-				Expect(caps.Drop).To(ContainElement(kubev1.Capability(CAP_NET_RAW)), "Expected compute container to drop NET_RAW capability")
+				Expect(caps.Add).To(ContainElement(kubev1.Capability(CAP_NET_RAW)), "Expected compute container to be granted NET_RAW capability")
 			})
 
 			It("Should not require tun device if explicitly rejected", func() {
@@ -2205,7 +2205,7 @@ var _ = Describe("Template", func() {
 				caps := pod.Spec.Containers[0].SecurityContext.Capabilities
 
 				Expect(caps.Add).To(Not(ContainElement(kubev1.Capability(CAP_NET_ADMIN))), "Expected compute container not to be granted NET_ADMIN capability")
-				Expect(caps.Drop).To(ContainElement(kubev1.Capability(CAP_NET_RAW)), "Expected compute container to drop NET_RAW capability")
+				Expect(caps.Add).To(Not(ContainElement(kubev1.Capability(CAP_NET_RAW))), "Expected compute container not to be granted NET_RAW capability")
 			})
 		})
 
