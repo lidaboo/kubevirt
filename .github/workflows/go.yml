@@ -18,6 +18,7 @@ jobs:
     - name: Build
       run: |
         ls
+        sudo apt-get install pip3 -y
         make builder-build
         make
         make push
