@@ -1,0 +1,13 @@
+# Build Stage
+FROM golang:1.15 AS build-stage
+
+ADD . /opt/kubevirt
+WORKDIR /opt/kubevirt
+
+RUN mkdir bin && GOPROXY=goproxy.cn go build -o ./bin/ -mod vendor cmd/virt-operator/virt-operator.go
+
+
+## Final Stage
+FROM kubevirt/virt-operator:v0.36.0
+
+COPY --from=build-stage  /opt/kubevirt/bin/virt-operator /usr/bin
